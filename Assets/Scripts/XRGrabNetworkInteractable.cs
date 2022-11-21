@@ -22,6 +22,14 @@ public class XRGrabNetworkInteractable : XRGrabInteractable
     protected override void OnSelectEntering(XRBaseInteractor interactor)
     {
         photonview.RequestOwnership();
+        if (!photonview.IsMine)
+        {
+            Debug.Log("It's not me who is grabbing it.");
+        }
+        else
+        {
+            Debug.Log("It's ME! who is grabbing it.");
+        }
         base.OnSelectEntering(interactor);
     }
 }
