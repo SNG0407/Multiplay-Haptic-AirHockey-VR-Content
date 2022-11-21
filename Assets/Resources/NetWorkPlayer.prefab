@@ -84,6 +84,8 @@ MonoBehaviour:
   - {fileID: 5012770380646102633}
   - {fileID: 9097845219969191209}
   - {fileID: 8004255244074368593}
+  - {fileID: 2995691536044815610}
+  - {fileID: 4778465306139124602}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -119,8 +121,8 @@ MonoBehaviour:
   head: {fileID: 3799528857947708951}
   leftHand: {fileID: 6376254634795206653}
   rightHand: {fileID: 6764692795936569646}
-  leftHandAnimator: {fileID: 0}
-  rightHandAnimator: {fileID: 0}
+  leftHandAnimator: {fileID: 796215855698963525}
+  rightHandAnimator: {fileID: 5766734476088519731}
   Player_mat:
   - {fileID: 0}
   - {fileID: 0}
@@ -631,6 +633,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 758980047677413358}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &796215855698963525 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 109434732388006827, guid: 65847589f926b734d9eaed6e25f0046b,
+    type: 3}
+  m_PrefabInstance: {fileID: 758980047677413358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2228924045876115063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -709,6 +717,12 @@ GameObject:
 --- !u!4 &5766734476098388965 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5686134208185136530, guid: 1fd3a7c43c8190f4d8c167ebde694364,
+    type: 3}
+  m_PrefabInstance: {fileID: 2228924045876115063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5766734476088519731 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5686134208192617028, guid: 1fd3a7c43c8190f4d8c167ebde694364,
     type: 3}
   m_PrefabInstance: {fileID: 2228924045876115063}
   m_PrefabAsset: {fileID: 0}

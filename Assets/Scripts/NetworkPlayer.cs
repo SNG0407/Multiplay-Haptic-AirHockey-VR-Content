@@ -66,9 +66,9 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
 
         if (!photonView.IsMine)
         {
-            //PlayerName = "Opponent";
-            this.transform.position = new Vector3(0, 0, 1);
-            this.transform.rotation = Quaternion.Euler(0, 180, 0);
+            ////PlayerName = "Opponent";
+            //this.transform.position = new Vector3(0, 0, 1);
+            //this.transform.rotation = Quaternion.Euler(0, 180, 0);
 
         }
         else
@@ -76,7 +76,7 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
             //this.transform.Find("Head_Sphere").GetComponent<MeshRenderer>().material = Player_mat[1];
             //PlayerName = "Mine";
             foreach(var item in GetComponentsInChildren<Renderer>()){
-                //item.enabled = false;
+                item.enabled = false;
             }
         }
         //Debug.Log("Player Name : "+PlayerName);
