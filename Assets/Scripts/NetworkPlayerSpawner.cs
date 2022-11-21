@@ -44,7 +44,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
             spawnedPlayerPrefab = PhotonNetwork.Instantiate(NetworkManager.Instance.PlayerName, new Vector3(1, 0, 1), Quaternion.Euler(0, 180, 0));
         }
         else{
-            spawnedPlayerPrefab = PhotonNetwork.Instantiate(NetworkManager.Instance.PlayerName, new Vector3(0, 0, 1), Quaternion.Euler(0, 180, 0));
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
 
         }
 

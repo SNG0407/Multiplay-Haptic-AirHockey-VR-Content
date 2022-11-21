@@ -106,7 +106,7 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.RightHand), rightHandAnimator);
 
-                
+
             //Debug.Log("headRig : "+headRig.transform.position);
             //Debug.Log("leftHandRig : "+leftHandRig.transform.position);
             //Debug.Log("rightHandRig : "+rightHandRig.transform.position);
