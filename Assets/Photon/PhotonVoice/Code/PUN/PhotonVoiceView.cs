@@ -40,7 +40,8 @@ namespace Photon.Voice.PUN
 
         #endregion
 
-        #region Properties
+        
+#region Properties
 
         /// <summary> The Recorder component currently used by this PhotonVoiceView </summary>
         public Recorder RecorderInUse { get; private set; }
@@ -61,7 +62,6 @@ namespace Photon.Voice.PUN
         }
 
         #endregion
-
         #region Private Methods
 
         protected override void Awake()

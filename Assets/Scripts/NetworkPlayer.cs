@@ -64,20 +64,20 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
         leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
         rightHandRig = rig.transform.Find("Camera Offset/RightHand Controller");
 
-        if (!photonView.IsMine)
+        if (photonView.IsMine)
         {
             ////PlayerName = "Opponent";
             //this.transform.position = new Vector3(0, 0, 1);
             //this.transform.rotation = Quaternion.Euler(0, 180, 0);
-
+            foreach (var item in GetComponentsInChildren<Renderer>())
+            {
+                item.enabled = false;
+            }
         }
         else
         {
             //this.transform.Find("Head_Sphere").GetComponent<MeshRenderer>().material = Player_mat[1];
             //PlayerName = "Mine";
-            foreach(var item in GetComponentsInChildren<Renderer>()){
-                item.enabled = false;
-            }
         }
         //Debug.Log("Player Name : "+PlayerName);
         //Debug.Log("rig : "+rig);
