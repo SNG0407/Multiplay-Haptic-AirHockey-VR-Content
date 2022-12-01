@@ -49,14 +49,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         ConnectToServer();
         roomSettings = defaultRooms[0];
         //PlayerName = defaultRooms[0].pl;
-        Debug.Log(NetworkManager.Instance.PlayerName + " : Name");
+        //Debug.Log(NetworkManager.Instance.PlayerName + " : Name");
 
     }
 
     private void Update()
     {
         PlayerNumInRoom = PhotonNetwork.CountOfPlayersOnMaster;
-        Debug.Log($"Player Num In Room: {PlayerNumInRoom}");
+        //Debug.Log($"Player Num In Room: {PlayerNumInRoom}");
     }
 
     public void ConnectToServer(){
