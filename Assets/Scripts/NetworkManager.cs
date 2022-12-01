@@ -6,7 +6,7 @@ using UnityEngine.XR;
 using Unity.XR.CoreUtils;
 using Photon.Pun;
 using Photon.Realtime;
-
+using UnityEngine.UI;
 
 
 [System.Serializable]
@@ -27,7 +27,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     DefaultRoom roomSettings;
     public GameObject RoomUI;
 
+    public Text ServerStatus;
+
+
     private GameObject spawnedPlayerPrefab;
+    public GameObject XRRig;
 
       private void Awake()
     {
@@ -46,7 +50,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Start()
     {
         Instance = this;
-        ConnectToServer();
+        //ConnectToServer();
         roomSettings = defaultRooms[0];
         //PlayerName = defaultRooms[0].pl;
         //Debug.Log(NetworkManager.Instance.PlayerName + " : Name");
@@ -62,6 +66,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void ConnectToServer(){
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("Try to connect to server...");
+        ServerStatus.text = "Connecting...";
     }
 
     public void InitializeRoom(string sPlayerName){
@@ -69,8 +74,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         //PlayerName = sPlayerName;
         //Debug.Log(NetworkManager.Instance.PlayerName+" : Name");
 
-        //Load Scene
-        //PhotonNetwork.LoadLevel(roomSettings.SceneName);
+        
         //Create the room
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = (byte)roomSettings.maxPlayer;
@@ -79,16 +83,30 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.JoinOrCreateRoom(roomSettings.Name, roomOptions, TypedLobby.Default);
     }
-
+    public void Btn_ChoosePlayerEnterRoom(string playerName)
+    {
+        if (PhotonNetwork.InLobby)
+        {
+            NetworkManager.Instance.PlayerName = playerName;
+            Debug.Log($"{NetworkManager.Instance.PlayerName} Joined The Lobby. Initialize Room");
+            InitializeRoom(NetworkManager.Instance.PlayerName);
+        }
+        else
+        {
+            Debug.LogWarning("Please Connect your Server First");
+        }
+    }
     public override void OnJoinedLobby(){
         Debug.Log("We Joined The Lobby");
+        ServerStatus.text = "Choose your player";//Joined The Lobby. Please 
         base.OnJoinedLobby();
-        InitializeRoom(NetworkManager.Instance.PlayerName);
+        //InitializeRoom(NetworkManager.Instance.PlayerName);
        //RoomUI.SetActive(true);
     }
 
     public override void OnConnectedToMaster(){
         Debug.Log("Connected to Server");
+        ServerStatus.text = "Connected to Server";
         base.OnConnectedToMaster();
         PhotonNetwork.JoinLobby();
        
@@ -97,25 +115,50 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom(){
         //PlayerNumInRoom = PhotonNetwork.CountOfPlayers;
         //PlayerNumInRoom++;
-        NetworkManager.Instance.PlayerName = "Player"+ PlayerNumInRoom.ToString();
-        Debug.Log($"PlayerName: {NetworkManager.Instance.PlayerName}");
-        Debug.Log($"Player Num In Room: {PlayerNumInRoom}");
+        //NetworkManager.Instance.PlayerName = "Player"+ PlayerNumInRoom.ToString();
+        //Debug.Log($"PlayerName: {NetworkManager.Instance.PlayerName}");
+        //Load Scene
+        //PhotonNetwork.LoadLevel(roomSettings.SceneName);
 
-        Debug.Log("Joined a Room");
+        Debug.Log($"Joined the Room. Player Num In Room: {PlayerNumInRoom}");
+        RoomUI.SetActive(false);
+        //Debug.Log("Joined a Room");
         base.OnJoinedRoom();
 
-        Debug.Log(NetworkManager.Instance.PlayerName+" Joined");
-        //if(NetworkManager.Instance.PlayerName == "VRNetworkPlayer(1)")
-        //{
-        //    spawnedPlayerPrefab = PhotonNetwork.Instantiate(NetworkManager.Instance.PlayerName, new Vector3(0, 0.5f, -1.6f), Quaternion.Euler(0, 0, 0));
-        //}
-        //else if(NetworkManager.Instance.PlayerName == "VRNetworkPlayer(2)"){
-        //    spawnedPlayerPrefab = PhotonNetwork.Instantiate(NetworkManager.Instance.PlayerName, new Vector3(0, 0.5f, 1.5f), Quaternion.Euler(0, 180, 0));
-        //}
-        //else{
-        //    spawnedPlayerPrefab = PhotonNetwork.Instantiate(NetworkManager.Instance.PlayerName, new Vector3(0, 0, 1), Quaternion.Euler(0, 180, 0));
-
-        //}
+        //Debug.Log(NetworkManager.Instance.PlayerName+" Joined");
+        if(NetworkManager.Instance.PlayerName == "Player1")
+        {
+            Debug.Log(NetworkManager.Instance.PlayerName + " Joined");
+            //XRRig = GameObject.FindGameObjectWithTag("XRTag");
+            Debug.Log(XRRig);
+            //XRRig = GameObject.Find("XR Origin");
+            //XROrigin rig = FindObjectOfType<XROrigin>();
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
+            if (XRRig != null)
+            {
+                XRRig.transform.position = new Vector3(-0.025f, 1f, -1.858f);
+                XRRig.transform.rotation = Quaternion.Euler(0, 0, 0);
+                Debug.Log($"Found XR Origin & Pos: {XRRig.transform.position}");
+            }
+        }
+        else if(NetworkManager.Instance.PlayerName == "Player2")
+        {
+            Debug.Log(NetworkManager.Instance.PlayerName + " Joined");
+            //XRRig = GameObject.FindGameObjectWithTag("XRTag");
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
+            Debug.Log(XRRig);
+            if (XRRig != null)
+            {
+                XRRig.transform.position = new Vector3(0.008f, 1f, 3.655f);
+                XRRig.transform.rotation = Quaternion.Euler(0, 180, 0);
+                Debug.Log($"Found XR Origin & Pos: {XRRig.transform.position}");
+                //spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
+            }
+        }
+        else{
+            Debug.Log("Wrong Plyaer Clicked");
+            //spawnedPlayerPrefab = PhotonNetwork.Instantiate(NetworkManager.Instance.PlayerName, new Vector3(1, 1.1f, -1.6f), Quaternion.Euler(0, 0, 0));
+        }
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer) { //NetworkPlayer
