@@ -19,6 +19,7 @@ public class DefaultRoom
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    private int PlayerNumInRoom = 0;
     public static NetworkManager Instance;
     public List<DefaultRoom> defaultRooms;
     public string PlayerName;
@@ -52,7 +53,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     }
 
-   
+    private void Update()
+    {
+        PlayerNumInRoom = PhotonNetwork.CountOfPlayersOnMaster;
+        Debug.Log($"Player Num In Room: {PlayerNumInRoom}");
+    }
 
     public void ConnectToServer(){
         PhotonNetwork.ConnectUsingSettings();
@@ -90,6 +95,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     public override void OnJoinedRoom(){
+        //PlayerNumInRoom = PhotonNetwork.CountOfPlayers;
+        //PlayerNumInRoom++;
+        NetworkManager.Instance.PlayerName = "Player"+ PlayerNumInRoom.ToString();
+        Debug.Log($"PlayerName: {NetworkManager.Instance.PlayerName}");
+        Debug.Log($"Player Num In Room: {PlayerNumInRoom}");
+
         Debug.Log("Joined a Room");
         base.OnJoinedRoom();
 
@@ -108,10 +119,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer) { //NetworkPlayer
-        Debug.Log("A new player Joined the room");
+        Debug.Log($"A new player Joined the room: {PlayerNumInRoom}");
         base.OnPlayerEnteredRoom(newPlayer);
     }
     public override void OnLeftRoom(){
+        PlayerNumInRoom--;
         base.OnLeftRoom();
         PhotonNetwork.Destroy(spawnedPlayerPrefab);
     }

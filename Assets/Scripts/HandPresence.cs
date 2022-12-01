@@ -29,7 +29,7 @@ public class HandPresence : MonoBehaviour
 
         foreach (var item in devices)
         {
-            Debug.Log(item.name + item.characteristics);
+            //Debug.Log(item.name + item.characteristics);
         }
 
         if (devices.Count > 0)
@@ -42,7 +42,7 @@ public class HandPresence : MonoBehaviour
             }
             else
             {
-                Debug.Log("Did not find corresponding controller model");
+                //Debug.Log("Did not find corresponding controller model");
             }
 
             spawnedHandModel = Instantiate(handModelPrefab, transform);
