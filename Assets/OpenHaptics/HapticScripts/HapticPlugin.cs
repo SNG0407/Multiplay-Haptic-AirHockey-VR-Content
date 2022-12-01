@@ -258,7 +258,21 @@ public class HapticPlugin : MonoBehaviour  {
 		shape_render(configName, M); 
 	}
 		
+	public void tryToInlitailizeHaptic()
+    {
+		bool IsHapticConnected;
+		IsHapticConnected = initializeHapticDevice();
+        if (IsHapticConnected)
+        {
+			Debug.Log("Haptic Connected");
+        }
+        else
+        {
+			Debug.Log("Haptic is Not Connected");
 
+		}
+
+	}
 
 	bool initializeHapticDevice()
 	{
