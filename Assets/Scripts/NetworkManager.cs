@@ -31,9 +31,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
     private GameObject spawnedPlayerPrefab;
+    public GameObject MainCamera;
     public GameObject XRRig;
+    public GameObject HapticDevice;
 
-      private void Awake()
+    private void Awake()
     {
         var objs = FindObjectsOfType<NetworkManager>();
         if(objs.Length == 1)
@@ -43,6 +45,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         else
         {
             Destroy(gameObject);
+        }
+        if(XRRig.activeSelf == false)
+        {
+            MainCamera.SetActive(true);
         }
     }
 
@@ -134,11 +140,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             //XRRig = GameObject.Find("XR Origin");
             //XROrigin rig = FindObjectOfType<XROrigin>();
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
+            //Oculus
             if (XRRig != null)
             {
                 XRRig.transform.position = new Vector3(-0.025f, 1f, -1.858f);
                 XRRig.transform.rotation = Quaternion.Euler(0, 0, 0);
                 Debug.Log($"Found XR Origin & Pos: {XRRig.transform.position}");
+            }
+            //HapticDevice
+            if (HapticDevice != null)
+            {
+                HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, -0.41f);
+                HapticDevice.transform.rotation = Quaternion.Euler(0, 0, 0);
+                Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
             }
         }
         else if(NetworkManager.Instance.PlayerName == "Player2")
@@ -153,6 +167,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 XRRig.transform.rotation = Quaternion.Euler(0, 180, 0);
                 Debug.Log($"Found XR Origin & Pos: {XRRig.transform.position}");
                 //spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
+            }
+            //HapticDevice
+            if (HapticDevice != null)
+            {
+                HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, 2.11f);
+                HapticDevice.transform.rotation = Quaternion.Euler(0, 180f, 0);
+                Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
             }
         }
         else{
