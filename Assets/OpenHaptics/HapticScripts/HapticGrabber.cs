@@ -122,7 +122,7 @@ public class HapticGrabber : MonoBehaviour
 			
 	}
 
-	private void hapticTouchEvent( bool isTouch )
+	protected virtual void hapticTouchEvent( bool isTouch )
 	{
 		if (physicsToggleStyle == PhysicsToggleStyle.onGrab)
 		{
@@ -141,7 +141,7 @@ public class HapticGrabber : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter(Collision collisionInfo)
+	public virtual void OnCollisionEnter(Collision collisionInfo)
 	{
 		Collider other = collisionInfo.collider;
 		//Debug.unityLogger.Log("OnCollisionEnter : " + other.name);
@@ -173,7 +173,7 @@ public class HapticGrabber : MonoBehaviour
 	
 		touching = that;
 	}
-	void OnCollisionExit(Collision collisionInfo)
+	public virtual void OnCollisionExit(Collision collisionInfo)
 	{
 		Collider other = collisionInfo.collider;
 		//Debug.unityLogger.Log("onCollisionrExit : " + other.name);
@@ -193,9 +193,9 @@ public class HapticGrabber : MonoBehaviour
 			touching = null;
 		}
 	}
-		
+
 	//! Begin grabbing an object. (Like closing a claw.) Normally called when the button is pressed. 
-	void grab()
+	public virtual void grab()
 	{
 		GameObject touchedObject = touching;
 		if (touchedObject == null) // No Unity Collision? 
@@ -252,7 +252,7 @@ public class HapticGrabber : MonoBehaviour
 	}
 
 	//! Stop grabbing an obhject. (Like opening a claw.) Normally called when the button is released. 
-	void release()
+	public virtual void release()
 	{
 		if( grabbing == null ) //Nothing to release
 			return;
@@ -273,7 +273,7 @@ public class HapticGrabber : MonoBehaviour
 	}
 
 	//! Returns true if there is a current object. 
-	public bool isGrabbing()
+	public virtual bool isGrabbing()
 	{
 		return (grabbing != null);
 	}

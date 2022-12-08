@@ -71,7 +71,7 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
             //this.transform.rotation = Quaternion.Euler(0, 180, 0);
             foreach (var item in GetComponentsInChildren<Renderer>())
             {
-                //item.enabled = false;
+                item.enabled = false;
             }
         }
         else

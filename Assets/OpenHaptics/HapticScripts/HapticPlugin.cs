@@ -407,7 +407,7 @@ public class HapticPlugin : MonoBehaviour  {
 			hapticErrorQueue.Dequeue();
 	}
 
-	private void updateDevice()
+	public void updateDevice()
 	{
 		if (isIncorrectVersion)	return;
 
