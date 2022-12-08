@@ -26,16 +26,18 @@ public class HapticNetworkPlugin : HapticGrabber // HapticGrabber //HapticPlugin
     }
     public override void OnCollisionEnter(Collision collisionInfo)
     {
+        collisionInfo.gameObject.GetPhotonView().RequestOwnership();
         base.OnCollisionEnter(collisionInfo);
+        
     }
-    public override void grab()
-    {
-        photonView.RequestOwnership();
-        base.grab();
-    }
+    //public override void grab()
+    //{
+    //    photonView.RequestOwnership();
+    //    base.grab();
+    //}
 
-    public override void release()
-    {
-        base.release();
-    }
+    //public override void release()
+    //{
+    //    base.release();
+    //}
 }

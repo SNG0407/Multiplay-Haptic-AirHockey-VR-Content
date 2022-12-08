@@ -29,7 +29,7 @@ public class PuckNetworkManager : MonoBehaviour
         }
         if (collision.gameObject.name == "Collision_Table2" && NetworkManager.Instance.PlayerName == "Player2")
         {
-            Debug.Log("Player1 owns the puck");
+            Debug.Log("Player2 owns the puck");
             ChangeOwnerShip();
         }
     }

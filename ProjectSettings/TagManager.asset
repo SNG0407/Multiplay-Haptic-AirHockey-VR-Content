@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Touchable
   - XRTag
+  - HapticDevice
   layers:
   - Default
   - TransparentFX

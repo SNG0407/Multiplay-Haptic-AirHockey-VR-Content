@@ -31,6 +31,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
     private GameObject spawnedPlayerPrefab;
+    private GameObject HapticDevicePrefab;
     public GameObject MainCamera;
     public GameObject XRRig;
     public GameObject HapticDevice;
@@ -140,6 +141,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             //XRRig = GameObject.Find("XR Origin");
             //XROrigin rig = FindObjectOfType<XROrigin>();
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
+            HapticDevicePrefab = PhotonNetwork.Instantiate("HapticDevice", transform.position, transform.rotation);
             //Oculus
             if (XRRig != null)
             {
@@ -148,18 +150,26 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 Debug.Log($"Found XR Origin & Pos: {XRRig.transform.position}");
             }
             //HapticDevice
-            if (HapticDevice != null)
+            if (HapticDevicePrefab != null)
             {
-                HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, -0.41f);
-                HapticDevice.transform.rotation = Quaternion.Euler(0, 0, 0);
-                Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
-            }
+                HapticDevicePrefab.transform.position = new Vector3(-0.07f, 1.9f, -0.41f);
+                HapticDevicePrefab.transform.rotation = Quaternion.Euler(0, 0, 0);
+                Debug.Log($"Found HapticDevice & Pos: {HapticDevicePrefab.transform.position}");
+            }//HapticDevice
+            //if (HapticDevice != null)
+            //{
+            //    HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, -0.41f);
+            //    HapticDevice.transform.rotation = Quaternion.Euler(0, 0, 0);
+            //    Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
+            //}
         }
         else if(NetworkManager.Instance.PlayerName == "Player2")
         {
             Debug.Log(NetworkManager.Instance.PlayerName + " Joined");
             //XRRig = GameObject.FindGameObjectWithTag("XRTag");
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
+            HapticDevicePrefab = PhotonNetwork.Instantiate("HapticDevice", transform.position, transform.rotation);
+
             Debug.Log(XRRig);
             if (XRRig != null)
             {
@@ -169,12 +179,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 //spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
             }
             //HapticDevice
-            if (HapticDevice != null)
+            if (HapticDevicePrefab != null)
             {
-                HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, 2.11f);
-                HapticDevice.transform.rotation = Quaternion.Euler(0, 180f, 0);
-                Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
+                HapticDevicePrefab.transform.position = new Vector3(-0.07f, 1.9f, 2.11f);
+                HapticDevicePrefab.transform.rotation = Quaternion.Euler(0, 180f, 0);
+                Debug.Log($"Found HapticDevice & Pos: {HapticDevicePrefab.transform.position}");
             }
+            //if (HapticDevice != null)
+            //{
+            //    HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, 2.11f);
+            //    HapticDevice.transform.rotation = Quaternion.Euler(0, 180f, 0);
+            //    Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
+            //}
         }
         else{
             Debug.Log("Wrong Plyaer Clicked");

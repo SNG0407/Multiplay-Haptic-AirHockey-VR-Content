@@ -15,6 +15,8 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
     public Transform head;
     public Transform leftHand;
     public Transform rightHand;
+    public Transform Grabber;
+
     //private PhotonView photonView;
 
     public Animator leftHandAnimator;
@@ -24,7 +26,12 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
     private Transform leftHandRig;
     private Transform rightHandRig;
 
+    private Transform HapticGrabber;
+
     public Material[] Player_mat = new Material[2];
+
+    bool IsrigExist = false;
+    bool IsHapticExist = false;
 
     // Start is called before the first frame update
     void Start()
@@ -60,9 +67,22 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
         //photonView = GetComponenet<photonView>();
         XROrigin rig = FindObjectOfType<XROrigin>();
         //XR Origin/Camera Offset/
-        headRig = rig.transform.Find("Camera Offset/Main Camera");
-        leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
-        rightHandRig = rig.transform.Find("Camera Offset/RightHand Controller");
+        if(rig != null)
+        {
+            IsrigExist = true;
+            headRig = rig.transform.Find("Camera Offset/Main Camera");
+            leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
+            rightHandRig = rig.transform.Find("Camera Offset/RightHand Controller");
+        }
+
+        //hatpic device
+        GameObject haptic = GameObject.FindGameObjectWithTag("HapticDevice");
+        if(haptic != null)
+        {
+            IsHapticExist = true;
+            HapticGrabber = haptic.transform.Find("Grabber");
+        }
+
 
         if (photonView.IsMine)
         {
@@ -98,13 +118,20 @@ public class NetworkPlayer : MonoBehaviourPunCallbacks
             // head.gameObject.SetActive(false);
             // leftHand.gameObject.SetActive(false);
             // rightHand.gameObject.SetActive(false);
+            if (IsrigExist == true)
+            {
+                MapPosition(head, headRig);
+                MapPosition(leftHand, leftHandRig);
+                MapPosition(rightHand, rightHandRig);
 
-            MapPosition(head, headRig);
-            MapPosition(leftHand, leftHandRig);
-            MapPosition(rightHand, rightHandRig);
+                UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
+                UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.RightHand), rightHandAnimator);
+            }
+            if (IsHapticExist == true)
+            {
+                MapPosition(Grabber, HapticGrabber);
+            }
 
-            UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
-            UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.RightHand), rightHandAnimator);
 
 
             //Debug.Log("headRig : "+headRig.transform.position);
