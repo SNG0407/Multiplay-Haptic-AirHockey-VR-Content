@@ -47,12 +47,11 @@ public class HockeyBall : MonoBehaviour
    
     private void OnTriggerExit(Collider other)
     {
-        GameObject ball;
 
         if (other.gameObject.CompareTag("TableCol"))
         {
-            ball = Instantiate(gameObject);
-            ball.transform.position = new Vector3(-0.353f, -0.353f, -1.6f);
+            //ball = Instantiate(gameObject);
+            this.gameObject.transform.position = new Vector3(-0.353f, -0.353f, -1.6f);
         }
     }
 
