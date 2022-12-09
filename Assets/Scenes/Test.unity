@@ -5895,6 +5895,11 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7937452868331445729, guid: f9e4ba9048668b9449d351a6d9ead5c4,
+        type: 3}
+      propertyPath: m_Name
+      value: Player_HapticDevice
+      objectReference: {fileID: 0}
     - target: {fileID: 7940320453631218893, guid: f9e4ba9048668b9449d351a6d9ead5c4,
         type: 3}
       propertyPath: m_RootOrder
