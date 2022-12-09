@@ -141,7 +141,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             //XRRig = GameObject.Find("XR Origin");
             //XROrigin rig = FindObjectOfType<XROrigin>();
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
-            HapticDevicePrefab = PhotonNetwork.Instantiate("HapticDevice", transform.position, transform.rotation);
+            HapticDevicePrefab = PhotonNetwork.Instantiate("HapticDevice (1)", transform.position, transform.rotation);
             //Oculus
             if (XRRig != null)
             {
@@ -168,7 +168,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             Debug.Log(NetworkManager.Instance.PlayerName + " Joined");
             //XRRig = GameObject.FindGameObjectWithTag("XRTag");
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
-            HapticDevicePrefab = PhotonNetwork.Instantiate("HapticDevice", transform.position, transform.rotation);
+            HapticDevicePrefab = PhotonNetwork.Instantiate("HapticDevice (2)", transform.position, transform.rotation);
 
             Debug.Log(XRRig);
             if (XRRig != null)

@@ -31,28 +31,46 @@ public class HapticNetworkGrabber : MonoBehaviour
 	void Start()
 	{
 		photonView = GetComponent<PhotonView>();
-        if (photonView.IsMine)
-        {
-			if (hapticDevice == null)
+		if (hapticDevice == null)
+		{
+			Debug.Log($"PlayerName: {NetworkManager.Instance.PlayerName}");
+			if (NetworkManager.Instance.PlayerName == "Player1")
 			{
-
-				HapticPlugin[] HPs = (HapticPlugin[])Object.FindObjectsOfType(typeof(HapticPlugin));
-				foreach (HapticPlugin HP in HPs)
-				{
-					if (HP.hapticManipulator == this.gameObject)
-					{
-						hapticDevice = HP.gameObject;
-					}
-				}
+				hapticDevice = GameObject.Find("Player1_HapticDevice");
+				Debug.Log($"Player1 haptic: {hapticDevice}");
+			}
+			else if (NetworkManager.Instance.PlayerName == "Player2")
+			{
+				hapticDevice = GameObject.Find("Player2_HapticDevice");
+				Debug.Log($"Player2 haptic: {hapticDevice}");
 
 			}
+			//HapticPlugin[] HPs = (HapticPlugin[])Object.FindObjectsOfType(typeof(HapticPlugin));
 
-			if (physicsToggleStyle != PhysicsToggleStyle.none)
-				hapticDevice.GetComponent<HapticPlugin>().PhysicsManipulationEnabled = false;
+			//GameObject HapticPlugin = 
+			//if(hapticDevice.GetComponent<HapticPlugin>().hapticManipulator == this.gameObject)
 
-			if (DisableUnityCollisionsWithTouchableObjects)
-				disableUnityCollisions();
+			//foreach (HapticPlugin HP in HPs)
+			//            {
+			//	hapticDevice.GetComponent<HapticPlugin>().hapticManipulator
+
+			//	if (HP.hapticManipulator == this.gameObject)
+			//                {
+			//                    hapticDevice = HP.gameObject;
+			//                }
+			//            }
+
 		}
+
+		if (physicsToggleStyle != PhysicsToggleStyle.none)
+			hapticDevice.GetComponent<HapticPlugin>().PhysicsManipulationEnabled = false;
+
+		if (DisableUnityCollisionsWithTouchableObjects)
+			disableUnityCollisions();
+		//if (photonView.IsMine)
+  //      {
+			
+		//}
 
 		
 	}
@@ -91,6 +109,7 @@ public class HapticNetworkGrabber : MonoBehaviour
 	//! Update is called once per frame
 	void FixedUpdate()
 	{
+		Debug.Log($"hapticDevice:{hapticDevice}");
 		bool newButtonStatus = hapticDevice.GetComponent<HapticPlugin>().Buttons[buttonID] == 1;
 		bool oldButtonStatus = buttonStatus;
 		buttonStatus = newButtonStatus;
@@ -216,53 +235,54 @@ public class HapticNetworkGrabber : MonoBehaviour
 	//! Begin grabbing an object. (Like closing a claw.) Normally called when the button is pressed. 
 	public virtual void grab()
 	{
+		GameObject touchedObject = touching;
+		if (touchedObject == null) // No Unity Collision? 
+		{
+			// Maybe there's a Haptic Collision
+			touchedObject = hapticDevice.GetComponent<HapticPlugin>().touching;
+		}
+
+		if (grabbing != null) // Already grabbing
+			return;
+		if (touchedObject == null) // Nothing to grab
+			return;
+
+		// Grabbing a grabber is bad news.
+		if (touchedObject.tag == "Gripper")
+			return;
+
+		Debug.Log(" Object : " + touchedObject.name + "  Tag : " + touchedObject.tag);
+
+		grabbing = touchedObject;
+
+		//Debug.logger.Log("Grabbing Object : " + grabbing.name);
+		Rigidbody body = grabbing.GetComponent<Rigidbody>();
+
+		// If this doesn't have a rigidbody, walk up the tree. 
+		// It may be PART of a larger physics object.
+		while (body == null)
+		{
+			//Debug.logger.Log("Grabbing : " + grabbing.name + " Has no body. Finding Parent. ");
+			if (grabbing.transform.parent == null)
+			{
+				grabbing = null;
+				return;
+			}
+			GameObject parent = grabbing.transform.parent.gameObject;
+			if (parent == null)
+			{
+				grabbing = null;
+				return;
+			}
+			grabbing = parent;
+			body = grabbing.GetComponent<Rigidbody>();
+		}
+
+		joint = (FixedJoint)gameObject.AddComponent(typeof(FixedJoint));
+		joint.connectedBody = body;
 		if (photonView.IsMine)
         {
-			GameObject touchedObject = touching;
-			if (touchedObject == null) // No Unity Collision? 
-			{
-				// Maybe there's a Haptic Collision
-				touchedObject = hapticDevice.GetComponent<HapticPlugin>().touching;
-			}
-
-			if (grabbing != null) // Already grabbing
-				return;
-			if (touchedObject == null) // Nothing to grab
-				return;
-
-			// Grabbing a grabber is bad news.
-			if (touchedObject.tag == "Gripper")
-				return;
-
-			Debug.Log(" Object : " + touchedObject.name + "  Tag : " + touchedObject.tag);
-
-			grabbing = touchedObject;
-
-			//Debug.logger.Log("Grabbing Object : " + grabbing.name);
-			Rigidbody body = grabbing.GetComponent<Rigidbody>();
-
-			// If this doesn't have a rigidbody, walk up the tree. 
-			// It may be PART of a larger physics object.
-			while (body == null)
-			{
-				//Debug.logger.Log("Grabbing : " + grabbing.name + " Has no body. Finding Parent. ");
-				if (grabbing.transform.parent == null)
-				{
-					grabbing = null;
-					return;
-				}
-				GameObject parent = grabbing.transform.parent.gameObject;
-				if (parent == null)
-				{
-					grabbing = null;
-					return;
-				}
-				grabbing = parent;
-				body = grabbing.GetComponent<Rigidbody>();
-			}
-
-			joint = (FixedJoint)gameObject.AddComponent(typeof(FixedJoint));
-			joint.connectedBody = body;
+			
 		}
 		
 	}
@@ -277,23 +297,24 @@ public class HapticNetworkGrabber : MonoBehaviour
 	//! Stop grabbing an obhject. (Like opening a claw.) Normally called when the button is released. 
 	public virtual void release()
 	{
+		if (grabbing == null) //Nothing to release
+			return;
+
+
+		Debug.Assert(joint != null);
+
+		joint.connectedBody = null;
+		Destroy(joint);
+
+
+
+		grabbing = null;
+
+		if (physicsToggleStyle != PhysicsToggleStyle.none)
+			hapticDevice.GetComponent<HapticPlugin>().PhysicsManipulationEnabled = false;
 		if (photonView.IsMine)
         {
-			if (grabbing == null) //Nothing to release
-				return;
-
-
-			Debug.Assert(joint != null);
-
-			joint.connectedBody = null;
-			Destroy(joint);
-
-
-
-			grabbing = null;
-
-			if (physicsToggleStyle != PhysicsToggleStyle.none)
-				hapticDevice.GetComponent<HapticPlugin>().PhysicsManipulationEnabled = false;
+			
 
 		}
 
