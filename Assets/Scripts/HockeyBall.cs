@@ -12,14 +12,14 @@ public class HockeyBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score1 = GameObject.Find("Score1").GetComponent<Text>();
-        score2 = GameObject.Find("Score2").GetComponent<Text>();
+       // score1 = GameObject.Find("Score1").GetComponent<Text>();
+        //score2 = GameObject.Find("Score2").GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetScoreText();
+        //SetScoreText();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,6 +43,17 @@ public class HockeyBall : MonoBehaviour
             ball.transform.position = new Vector3(0, 11, -10);
         }
 
+    }
+   
+    private void OnTriggerExit(Collider other)
+    {
+        GameObject ball;
+
+        if (other.gameObject.CompareTag("TableCol"))
+        {
+            ball = Instantiate(gameObject);
+            ball.transform.position = new Vector3(-0.353f, -0.353f, -1.6f);
+        }
     }
 
     void SetScoreText()

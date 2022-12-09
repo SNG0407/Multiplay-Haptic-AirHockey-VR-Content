@@ -8,6 +8,7 @@ TagManager:
   - XRTag
   - HapticDevice
   - Haptic1
+  - TableCol
   layers:
   - Default
   - TransparentFX

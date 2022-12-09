@@ -2391,6 +2391,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &922094096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 922094098}
+  - component: {fileID: 922094097}
+  m_Layer: 0
+  m_Name: wholeTableCollision
+  m_TagString: TableCol
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &922094097
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922094096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4729028, y: 1, z: 5.700705}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &922094098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922094096}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.083, y: 0.749, z: 0.807}
+  m_LocalScale: {x: 0.74889, y: 1, z: 0.7799538}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 28
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &926394141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,6 +2655,7 @@ GameObject:
   - component: {fileID: 940760923}
   - component: {fileID: 940760922}
   - component: {fileID: 940760924}
+  - component: {fileID: 940760925}
   m_Layer: 0
   m_Name: puckAirhockey
   m_TagString: Touchable
@@ -2700,6 +2745,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b78cf522f0630c43bc1aa65176a8d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &940760925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940760919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92992e10199ff842ab31436b51d71b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score1: {fileID: 0}
+  score2: {fileID: 0}
 --- !u!1 &957658952
 GameObject:
   m_ObjectHideFlags: 0
@@ -2999,6 +3058,36 @@ PrefabInstance:
     - target: {fileID: 4000010151896072, guid: e93376204c48e41468a8598365a9037e, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000011216385690, guid: e93376204c48e41468a8598365a9037e,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.10000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000011216385690, guid: e93376204c48e41468a8598365a9037e,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.45234862
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000011216385690, guid: e93376204c48e41468a8598365a9037e,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.07617433
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000013181704070, guid: e93376204c48e41468a8598365a9037e,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.10000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000013181704070, guid: e93376204c48e41468a8598365a9037e,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.4716883
+      objectReference: {fileID: 0}
+    - target: {fileID: 65000013181704070, guid: e93376204c48e41468a8598365a9037e,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.085844174
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e93376204c48e41468a8598365a9037e, type: 3}
@@ -4008,6 +4097,7 @@ GameObject:
   - component: {fileID: 1462212329}
   - component: {fileID: 1462212328}
   - component: {fileID: 1462212327}
+  - component: {fileID: 1462212332}
   m_Layer: 0
   m_Name: puckAirhockey (2)
   m_TagString: Touchable
@@ -4097,6 +4187,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1462212332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462212326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92992e10199ff842ab31436b51d71b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score1: {fileID: 0}
+  score2: {fileID: 0}
 --- !u!1 &1513717090
 GameObject:
   m_ObjectHideFlags: 0
