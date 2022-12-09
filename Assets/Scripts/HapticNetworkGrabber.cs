@@ -32,47 +32,47 @@ public class HapticNetworkGrabber : MonoBehaviour
 	{
 		//Debug.Log("Haptic Device is still null");
 
-		photonView = GetComponent<PhotonView>();
-		if (hapticDevice == null)
-		{
-			//Debug.Log($"PlayerName: {NetworkManager.Instance.PlayerName}");
-            //if (NetworkManager.Instance.PlayerName == "Player1")
-            //{
-            //	hapticDevice = GameObject.Find("Player1_HapticDevice");
-            //	Debug.Log($"Player1 haptic: {hapticDevice}");
-            //}
-            //else if (NetworkManager.Instance.PlayerName == "Player2")
-            //{
-            //	hapticDevice = GameObject.Find("Player2_HapticDevice");
-            //	Debug.Log($"Player2 haptic: {hapticDevice}");
+		//photonView = GetComponent<PhotonView>();
+		//if (hapticDevice == null)
+		//{
+		//	//Debug.Log($"PlayerName: {NetworkManager.Instance.PlayerName}");
+  //          //if (NetworkManager.Instance.PlayerName == "Player1")
+  //          //{
+  //          //	hapticDevice = GameObject.Find("Player1_HapticDevice");
+  //          //	Debug.Log($"Player1 haptic: {hapticDevice}");
+  //          //}
+  //          //else if (NetworkManager.Instance.PlayerName == "Player2")
+  //          //{
+  //          //	hapticDevice = GameObject.Find("Player2_HapticDevice");
+  //          //	Debug.Log($"Player2 haptic: {hapticDevice}");
 
-            //}
-            HapticPlugin[] HPs = (HapticPlugin[])Object.FindObjectsOfType(typeof(HapticPlugin));
-			if (hapticDevice.GetComponent<HapticPlugin>().hapticManipulator == this.gameObject)
+  //          //}
+  //          HapticPlugin[] HPs = (HapticPlugin[])Object.FindObjectsOfType(typeof(HapticPlugin));
+		//	if (hapticDevice.GetComponent<HapticPlugin>().hapticManipulator == this.gameObject)
 
-                foreach (HapticPlugin HP in HPs)
-                {
-                if (HP.hapticManipulator == this.gameObject)
-                    {
-                        hapticDevice = HP.gameObject;
-                    }
-                }
-		}
-		if (hapticDevice == null)
-		{
-			Debug.Log("Haptic Device is still null");
-			hapticDevice = GameObject.Find("Player_HapticDevice");
-		}
-		else
-		{
-			Debug.Log($"Haptic Device is not null {hapticDevice}");
+  //              foreach (HapticPlugin HP in HPs)
+  //              {
+  //              if (HP.hapticManipulator == this.gameObject)
+  //                  {
+  //                      hapticDevice = HP.gameObject;
+  //                  }
+  //              }
+		//}
+		//if (hapticDevice == null)
+		//{
+		//	Debug.Log("Haptic Device is still null");
+		//	hapticDevice = GameObject.Find("Player_HapticDevice");
+		//}
+		//else
+		//{
+		//	Debug.Log($"Haptic Device is not null {hapticDevice}");
 
-		}
-		if (physicsToggleStyle != PhysicsToggleStyle.none)
-			hapticDevice.GetComponent<HapticPlugin>().PhysicsManipulationEnabled = false;
+		//}
+		//if (physicsToggleStyle != PhysicsToggleStyle.none)
+		//	hapticDevice.GetComponent<HapticPlugin>().PhysicsManipulationEnabled = false;
 
-		if (DisableUnityCollisionsWithTouchableObjects)
-			disableUnityCollisions();
+		//if (DisableUnityCollisionsWithTouchableObjects)
+		//	disableUnityCollisions();
 		//if (photonView.IsMine)
   //      {
 			
@@ -298,10 +298,7 @@ public class HapticNetworkGrabber : MonoBehaviour
 
 		joint = (FixedJoint)gameObject.AddComponent(typeof(FixedJoint));
 		joint.connectedBody = body;
-		if (photonView.IsMine)
-        {
-			
-		}
+	
 		
 	}
 	//! changes the layer of an object, and every child of that object.
@@ -330,11 +327,7 @@ public class HapticNetworkGrabber : MonoBehaviour
 
 		if (physicsToggleStyle != PhysicsToggleStyle.none)
 			hapticDevice.GetComponent<HapticPlugin>().PhysicsManipulationEnabled = false;
-		if (photonView.IsMine)
-        {
-			
-
-		}
+		
 
 	}
 

@@ -68,6 +68,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         PlayerNumInRoom = PhotonNetwork.CountOfPlayersOnMaster;
         //Debug.Log($"Player Num In Room: {PlayerNumInRoom}");
+        checkHapticLocation();
     }
 
     public void ConnectToServer(){
@@ -207,4 +208,49 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         base.OnLeftRoom();
         PhotonNetwork.Destroy(spawnedPlayerPrefab);
     }
+
+    private void checkHapticLocation()
+    {
+        if (NetworkManager.Instance.PlayerName == "Player1")
+        {
+            if(HapticDevice.transform.position != new Vector3(-0.07f, 1.9f, -0.41f))
+            {
+                Debug.Log("Player1's hatpic location is wrong");
+                //HapticDevice
+                if (HapticDevice != null)
+                {
+                    HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, -0.41f);
+                    HapticDevice.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
+                }//HapticDevice
+            }
+            else
+            {
+                Debug.Log("Player1's hatpic location is Okay");
+            }
+
+
+        }
+        else if (NetworkManager.Instance.PlayerName == "Player2")
+        {
+            //HapticDevice
+            if (HapticDevice.transform.position != new Vector3(-0.07f, 1.9f, 2.11f))
+            {
+                Debug.Log("Player2's hatpic location is wrong");
+
+                if (HapticDevice != null)
+                {
+                    HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, 2.11f);
+                    HapticDevice.transform.rotation = Quaternion.Euler(0, 180f, 0);
+                    Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
+                }
+            }
+            else
+            {
+                Debug.Log("Player2's hatpic location is Okay");
+            }
+
+        }
+    }
+
 }
