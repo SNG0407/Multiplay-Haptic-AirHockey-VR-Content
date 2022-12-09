@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 927309036245769568}
   - component: {fileID: 956476785433468868}
   - component: {fileID: 957142168317706018}
+  - component: {fileID: 8941851959540474680}
   m_Layer: 0
   m_Name: Player1_HapticDevice
   m_TagString: Touchable
@@ -292,7 +293,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925086475963901494}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2307560af17f8c64dba01b84045f565f, type: 3}
   m_Name: 
@@ -366,6 +367,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SafeOnMovedReferenceFrame: 1
   SafeOnFrameratesBelow: 15
+--- !u!114 &8941851959540474680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925086475963901494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4d17ec75f6f48643b9017adacc7913d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  configName: Default Device
+  connect_On_Start: 1
+  PhysicsForceStrength: 0.333
+  PhysicsForceDamping: 0.33
+  shapesEnabled: 1
+  hapticManipulator: {fileID: 925037796064331982}
+  PhysicsManipulationEnabled: 1
+  touching: {fileID: 0}
+  touchingDepth: 0
+  hHD: -1
+  device_SerialNumber: -Not Connected-
+  device_Model: -Not Connected-
+  stylusPositionRaw: {x: 0, y: 0, z: 0}
+  stylusVelocityRaw: {x: 0, y: 0, z: 0}
+  stylusTransformRaw:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  Buttons: 
+  inkwell: 0
+  proxyPositionRaw: {x: 0, y: 0, z: 0}
+  proxyOrientationRaw: {x: 0, y: 0, z: 0, w: 0}
+  proxyTransformRaw:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  proxyNormalRaw: {x: 0, y: 0, z: 0}
+  stylusPositionWorld: {x: 0, y: 0, z: 0}
+  stylusRotationWorld: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &925125860617919308
 GameObject:
   m_ObjectHideFlags: 0
