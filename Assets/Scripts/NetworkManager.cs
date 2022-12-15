@@ -38,6 +38,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject XRRig;
     public GameObject HapticDevice;
 
+    private bool isNetworkConnected;
+
     private PhotonView photonView;
     private void Awake()
     {
@@ -73,13 +75,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PlayerNumInRoom = PhotonNetwork.CountOfPlayersOnMaster;
         //Debug.Log($"Player Num In Room: {PlayerNumInRoom}");
         checkHapticLocation();
-        if (photonView.IsMine)
+        if(isNetworkConnected == true)
         {
-            YourStatus.text = "Master";
-        }
-        else
-        {
-            YourStatus.text = "Client";
+            if (photonView.IsMine)
+            {
+                YourStatus.text = "Master";
+            }
+            else
+            {
+                YourStatus.text = "Client";
+            }
         }
     }
 
@@ -143,7 +148,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log($"Joined the Room. Player Num In Room: {PlayerNumInRoom}");
         RoomUI.SetActive(false);
         GameUI.SetActive(true);
-        
+        isNetworkConnected = true;
         //Debug.Log("Joined a Room");
         base.OnJoinedRoom();
 
