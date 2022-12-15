@@ -9,6 +9,8 @@ TagManager:
   - HapticDevice
   - Haptic1
   - TableCol
+  - Goal
+  - Goal2
   layers:
   - Default
   - TransparentFX

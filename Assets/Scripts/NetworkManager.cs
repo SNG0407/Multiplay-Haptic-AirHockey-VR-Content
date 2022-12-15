@@ -226,7 +226,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             }
             else
             {
-                Debug.Log("Player1's hatpic location is Okay");
+                //Debug.Log("Player1's hatpic location is Okay");
             }
 
 
@@ -247,7 +247,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             }
             else
             {
-                Debug.Log("Player2's hatpic location is Okay");
+                //Debug.Log("Player2's hatpic location is Okay");
             }
 
         }
