@@ -29,6 +29,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject GameUI;
 
     public Text ServerStatus;
+    public Text YourStatus;
 
 
     private GameObject spawnedPlayerPrefab;
@@ -37,6 +38,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject XRRig;
     public GameObject HapticDevice;
 
+    private PhotonView photonView;
     private void Awake()
     {
         var objs = FindObjectsOfType<NetworkManager>();
@@ -57,6 +59,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
         Instance = this;
         //ConnectToServer();
         roomSettings = defaultRooms[0];
@@ -132,6 +135,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log($"Joined the Room. Player Num In Room: {PlayerNumInRoom}");
         RoomUI.SetActive(false);
         GameUI.SetActive(true);
+        if (photonView.IsMine)
+        {
+            YourStatus.text = "Master";
+        }
         //Debug.Log("Joined a Room");
         base.OnJoinedRoom();
 
