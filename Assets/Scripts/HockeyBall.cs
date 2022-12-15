@@ -36,29 +36,31 @@ public class HockeyBall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(photonView.IsMine)
-        {
             if (other.gameObject.CompareTag("Goal"))
             {
                 getScore1++;
                 Debug.Log("Goal 1");
                 //Destroy(gameObject);
                 //ball = Instantiate(gameObject);
-                ball.transform.position = new Vector3(-0.04f, 1.06f, 2.2f); //Player2's ball
-                ball.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                if (photonView.IsMine)
+                {
+                    ball.transform.position = new Vector3(-0.04f, 1.06f, 2.2f); //Player2's ball
+                    ball.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                }
             }
             //Tag를 골대별로 만들어서 점수 올리면 될 것 같습니다.
             else if (other.gameObject.CompareTag("Goal2"))
             {
                 getScore2++;
                 Debug.Log("Goal 2");
-                ball.transform.position = new Vector3(-0.04f, 1.06f, -0.5f);
-                ball.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                if (photonView.IsMine)
+                {
+                    ball.transform.position = new Vector3(-0.04f, 1.06f, -0.5f);
+                    ball.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                }
 
             }
             SetScoreText();
-        }
-        
     }
 
     private void OnTriggerExit(Collider other)
@@ -86,13 +88,17 @@ public class HockeyBall : MonoBehaviour
     {
         if (photonView.IsMine)
         {
-            ball.gameObject.GetComponent<PuckNetworkManager>().ChangeOwnerShip();
+            //ball.gameObject.GetComponent<PuckNetworkManager>().ChangeOwnerShip();
             this.gameObject.transform.position = new Vector3(-0.08f, 1.06f, 0.86f);
             ball.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 
             getScore1 = 0;
             getScore2 = 0;
             SetScoreText();
+        }
+        else
+        {
+            Debug.Log("You're not a master. Can't reset");
         }
         
     }

@@ -73,6 +73,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PlayerNumInRoom = PhotonNetwork.CountOfPlayersOnMaster;
         //Debug.Log($"Player Num In Room: {PlayerNumInRoom}");
         checkHapticLocation();
+        if (photonView.IsMine)
+        {
+            YourStatus.text = "Master";
+        }
+        else
+        {
+            YourStatus.text = "Client";
+        }
     }
 
     public void ConnectToServer(){
@@ -208,10 +216,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer) { //NetworkPlayer
         Debug.Log($"A new player Joined the room: {PlayerNumInRoom}");
         base.OnPlayerEnteredRoom(newPlayer);
-        if (photonView.IsMine)
-        {
-            YourStatus.text = "Master";
-        }
+        
     }
     public override void OnLeftRoom(){
         PlayerNumInRoom--;
