@@ -21,16 +21,16 @@ public class PuckNetworkManager : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.name == "Collision_Table1" && NetworkManager.Instance.PlayerName == "Player1")
-        {
-            Debug.Log("Player1 owns the puck");
-            ChangeOwnerShip();
-        }
-        if (collision.gameObject.name == "Collision_Table2" && NetworkManager.Instance.PlayerName == "Player2")
-        {
-            Debug.Log("Player2 owns the puck");
-            ChangeOwnerShip();
-        }
+        //if (collision.gameObject.name == "Collision_Table1" && NetworkManager.Instance.PlayerName == "Player1")
+        //{
+        //    Debug.Log("Player1 owns the puck");
+        //    ChangeOwnerShip();
+        //}
+        //if (collision.gameObject.name == "Collision_Table2" && NetworkManager.Instance.PlayerName == "Player2")
+        //{
+        //    Debug.Log("Player2 owns the puck");
+        //    ChangeOwnerShip();
+        //}
     }
     //private void OnCollisionStay(Collider other)
     //{
@@ -49,30 +49,30 @@ public class PuckNetworkManager : MonoBehaviour
     //}
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Grabber")
-        {
-            if (NetworkManager.Instance.PlayerName == "Player1")
-            {
-                Debug.Log("Player1 owns the puck");
-                ChangeOwnerShip();
-            }
-            if (NetworkManager.Instance.PlayerName == "Player2")
-            {
-                Debug.Log("Player2 owns the puck");
-                ChangeOwnerShip();
-            }
+        //if(other.gameObject.name == "Grabber")
+        //{
+        //    if (NetworkManager.Instance.PlayerName == "Player1")
+        //    {
+        //        Debug.Log("Player1 owns the puck");
+        //        ChangeOwnerShip();
+        //    }
+        //    if (NetworkManager.Instance.PlayerName == "Player2")
+        //    {
+        //        Debug.Log("Player2 owns the puck");
+        //        ChangeOwnerShip();
+        //    }
 
-            if (other.gameObject.name == "Collision_Table1" && NetworkManager.Instance.PlayerName == "Player1")
-            {
-                Debug.Log("Player1 owns the puck");
-                ChangeOwnerShip();
-            }
-            if (other.gameObject.name == "Collision_Table2" && NetworkManager.Instance.PlayerName == "Player2")
-            {
-                Debug.Log("Player2 owns the puck");
-                ChangeOwnerShip();
-            }
-        }
+        //    if (other.gameObject.name == "Collision_Table1" && NetworkManager.Instance.PlayerName == "Player1")
+        //    {
+        //        Debug.Log("Player1 owns the puck");
+        //        ChangeOwnerShip();
+        //    }
+        //    if (other.gameObject.name == "Collision_Table2" && NetworkManager.Instance.PlayerName == "Player2")
+        //    {
+        //        Debug.Log("Player2 owns the puck");
+        //        ChangeOwnerShip();
+        //    }
+        //}
         
     }
     //private void OnCollisionEnter(Collision collision)

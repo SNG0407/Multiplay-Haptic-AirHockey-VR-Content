@@ -63,12 +63,15 @@ public class HockeyBall : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-
-        if (other.gameObject.CompareTag("TableCol"))
+        if (photonView.IsMine)
         {
-            //ball = Instantiate(gameObject);
-            this.gameObject.transform.position = new Vector3(-0.08f, 1.06f, 0.86f); //가운데로
+            if (other.gameObject.CompareTag("TableCol"))
+            {
+                //ball = Instantiate(gameObject);
+                this.gameObject.transform.position = new Vector3(-0.08f, 1.06f, 0.86f); //가운데로
+            }
         }
+            
     }
 
     void SetScoreText()

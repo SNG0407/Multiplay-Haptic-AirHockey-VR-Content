@@ -59,12 +59,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        photonView = GetComponent<PhotonView>();
         Instance = this;
         //ConnectToServer();
         roomSettings = defaultRooms[0];
         //PlayerName = defaultRooms[0].pl;
         //Debug.Log(NetworkManager.Instance.PlayerName + " : Name");
+        photonView = GetComponent<PhotonView>();
 
     }
 
@@ -135,10 +135,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log($"Joined the Room. Player Num In Room: {PlayerNumInRoom}");
         RoomUI.SetActive(false);
         GameUI.SetActive(true);
-        if (photonView.IsMine)
-        {
-            YourStatus.text = "Master";
-        }
+        
         //Debug.Log("Joined a Room");
         base.OnJoinedRoom();
 
@@ -211,6 +208,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer) { //NetworkPlayer
         Debug.Log($"A new player Joined the room: {PlayerNumInRoom}");
         base.OnPlayerEnteredRoom(newPlayer);
+        if (photonView.IsMine)
+        {
+            YourStatus.text = "Master";
+        }
     }
     public override void OnLeftRoom(){
         PlayerNumInRoom--;
