@@ -14,6 +14,8 @@ public class HockeyBall : MonoBehaviour
     public Text Player2_score1;
     public Text Player2_score2;
 
+    public Text yourStatus;
+
     private int getScore1 = 0;
     private int getScore2 = 0;
 
@@ -32,7 +34,16 @@ public class HockeyBall : MonoBehaviour
     void Update()
     {
         //SetScoreText();
+        if (photonView.IsMine && yourStatus != null)
+        {
+            yourStatus.text = "Master";
+        }
+        else
+        {
+            yourStatus.text = "Client";
+        }
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
