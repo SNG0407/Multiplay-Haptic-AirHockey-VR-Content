@@ -4276,6 +4276,7 @@ MonoBehaviour:
   Player1_score2: {fileID: 573440646}
   Player2_score1: {fileID: 583322486}
   Player2_score2: {fileID: 437210605}
+  yourStatus: {fileID: 285262971}
 --- !u!114 &940760926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6237,6 +6238,7 @@ MonoBehaviour:
   Player1_score2: {fileID: 0}
   Player2_score1: {fileID: 0}
   Player2_score2: {fileID: 0}
+  yourStatus: {fileID: 0}
 --- !u!1 &1513717090
 GameObject:
   m_ObjectHideFlags: 0
@@ -7363,9 +7365,6 @@ MonoBehaviour:
   Paddle1: {fileID: 1367295062}
   Paddle2: {fileID: 729457194}
   puck: {fileID: 940760919}
-  Paddle1_Pos: {fileID: 0}
-  Paddle2_Pos: {fileID: 0}
-  puck_Pos: {fileID: 0}
 --- !u!4 &1744980195
 Transform:
   m_ObjectHideFlags: 0
