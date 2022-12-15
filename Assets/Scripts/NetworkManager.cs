@@ -75,17 +75,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PlayerNumInRoom = PhotonNetwork.CountOfPlayersOnMaster;
         //Debug.Log($"Player Num In Room: {PlayerNumInRoom}");
         checkHapticLocation();
-        if(isNetworkConnected == true)
-        {
-            if (photonView.IsMine)
-            {
-                YourStatus.text = "Master";
-            }
-            else
-            {
-                YourStatus.text = "Client";
-            }
-        }
+        
     }
 
     public void ConnectToServer(){
@@ -150,6 +140,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         GameUI.SetActive(true);
         isNetworkConnected = true;
         //Debug.Log("Joined a Room");
+        //if (isNetworkConnected == true)
+        //{
+        //    if (photonView.IsMine)
+        //    {
+        //        YourStatus.text = "Master";
+        //    }
+        //    else
+        //    {
+        //        YourStatus.text = "Client";
+        //    }
+        //}
         base.OnJoinedRoom();
 
         //Debug.Log(NetworkManager.Instance.PlayerName+" Joined");
