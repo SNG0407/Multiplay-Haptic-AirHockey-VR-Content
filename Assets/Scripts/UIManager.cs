@@ -12,25 +12,25 @@ public class UIManager : MonoBehaviour
     public GameObject Paddle2;
     public GameObject puck;
 
-    public Transform Paddle1_Pos;
-    public Transform Paddle2_Pos;
-    public Transform puck_Pos;
+    private Vector3 Paddle1_Pos;
+    private Vector3 Paddle2_Pos;
+    private Vector3 puck_Pos;
     void Start()
     {
         photonView = GetComponent<PhotonView>();
 
-        Paddle1_Pos.position = Paddle1.transform.position;
-        Paddle2_Pos.position = Paddle2.transform.position;
-        puck_Pos.position = puck.transform.position;
+        Paddle1_Pos = Paddle1.transform.position;
+        Paddle2_Pos = Paddle2.transform.position;
+        puck_Pos = puck.transform.position;
     }
 
     public void resetPositions()
     {
         if (photonView.IsMine)
         {
-            Paddle1.transform.position = Paddle1_Pos.position;
-            Paddle1.transform.position = Paddle2_Pos.position;
-            Paddle1.transform.position = puck_Pos.position;
+            Paddle1.transform.position = Paddle1_Pos;
+            Paddle1.transform.position = Paddle2_Pos;
+            Paddle1.transform.position = puck_Pos;
         }
         else
         {
