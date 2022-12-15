@@ -150,14 +150,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             {
                 XRRig.transform.position = new Vector3(-0.025f, 1f, -1.858f);
                 XRRig.transform.rotation = Quaternion.Euler(0, 0, 0);
-                Debug.Log($"Found XR Origin & Pos: {XRRig.transform.position}");
+                //Debug.Log($"Found XR Origin & Pos: {XRRig.transform.position}");
             }
             //HapticDevice
             if (HapticDevice != null)
             {
                 HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, -0.41f);
                 HapticDevice.transform.rotation = Quaternion.Euler(0, 0, 0);
-                Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
+                //Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
             }//HapticDevice
             //if (HapticDevice != null)
             //{
@@ -178,7 +178,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             {
                 XRRig.transform.position = new Vector3(0.008f, 1f, 3.655f);
                 XRRig.transform.rotation = Quaternion.Euler(0, 180, 0);
-                Debug.Log($"Found XR Origin & Pos: {XRRig.transform.position}");
+                //Debug.Log($"Found XR Origin & Pos: {XRRig.transform.position}");
                 //spawnedPlayerPrefab = PhotonNetwork.Instantiate("NetWorkPlayer", transform.position, transform.rotation);
             }
             //HapticDevice
@@ -186,7 +186,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             {
                 HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, 2.11f);
                 HapticDevice.transform.rotation = Quaternion.Euler(0, 180f, 0);
-                Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
+                //Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
             }
             //if (HapticDevice != null)
             //{
@@ -217,13 +217,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             if(HapticDevice.transform.position != new Vector3(-0.07f, 1.9f, -0.41f))
             {
-                Debug.Log("Player1's hatpic location is wrong");
+                //Debug.Log("Player1's hatpic location is wrong");
                 //HapticDevice
                 if (HapticDevice != null)
                 {
                     HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, -0.41f);
                     HapticDevice.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
+                    //Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
                 }//HapticDevice
             }
             else
@@ -238,13 +238,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             //HapticDevice
             if (HapticDevice.transform.position != new Vector3(-0.07f, 1.9f, 2.11f))
             {
-                Debug.Log("Player2's hatpic location is wrong");
+                //Debug.Log("Player2's hatpic location is wrong");
 
                 if (HapticDevice != null)
                 {
                     HapticDevice.transform.position = new Vector3(-0.07f, 1.9f, 2.11f);
                     HapticDevice.transform.rotation = Quaternion.Euler(0, 180f, 0);
-                    Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
+                    //Debug.Log($"Found HapticDevice & Pos: {HapticDevice.transform.position}");
                 }
             }
             else
