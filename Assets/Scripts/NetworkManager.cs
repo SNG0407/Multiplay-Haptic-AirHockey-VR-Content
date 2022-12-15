@@ -26,6 +26,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public int PlayerNum = 0;
     DefaultRoom roomSettings;
     public GameObject RoomUI;
+    public GameObject GameUI;
 
     public Text ServerStatus;
 
@@ -130,6 +131,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         Debug.Log($"Joined the Room. Player Num In Room: {PlayerNumInRoom}");
         RoomUI.SetActive(false);
+        GameUI.SetActive(true);
         //Debug.Log("Joined a Room");
         base.OnJoinedRoom();
 
