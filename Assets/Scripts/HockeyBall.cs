@@ -97,19 +97,18 @@ public class HockeyBall : MonoBehaviour
 
     public void ResetBtn()
     {
+        getScore1 = 0;
+        getScore2 = 0;
+        SetScoreText();
         if (photonView.IsMine)
         {
             //ball.gameObject.GetComponent<PuckNetworkManager>().ChangeOwnerShip();
             this.gameObject.transform.position = new Vector3(-0.08f, 1.06f, 0.86f);
             ball.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-
-            getScore1 = 0;
-            getScore2 = 0;
-            SetScoreText();
         }
         else
         {
-            Debug.Log("You're not a master. Can't reset");
+            //Debug.Log("You're not a master. Can't reset");
         }
         
     }
