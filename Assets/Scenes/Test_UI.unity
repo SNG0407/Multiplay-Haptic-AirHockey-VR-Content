@@ -4172,7 +4172,7 @@ GameObject:
   - component: {fileID: 940760925}
   - component: {fileID: 940760926}
   m_Layer: 0
-  m_Name: puckAirhockey
+  m_Name: ' '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
